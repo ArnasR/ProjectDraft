@@ -11,29 +11,29 @@ namespace draft.Test
 {
     public class BaseTest
     {
-        public static IWebDriver driver;
-        public static BasicCheckBoxPage _page;
+        protected static IWebDriver Driver;
 
+        public static BasicCalculatorPage basicCalculatorPage;
 
         [OneTimeSetUp]
         public static void SetUp()
         {
-            driver = CustomDriver.GetChromeDriver();
+            Driver = CustomDriver.GetChromeDriver();
 
-            _page = new BasicCheckBoxPage(driver);
+            basicCalculatorPage = new BasicCalculatorPage(Driver);
         }
 
         [TearDown]
         public static void TakeScreeshot()
         {
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
-                MyScreenshot.MakeScreeshot(driver);
+                MyScreenshot.MakeScreeshot(Driver);
         }
 
         [OneTimeTearDown]
         public static void TearDown()
         {
-            driver.Quit();
+            Driver.Quit();
         }
     }
 }
